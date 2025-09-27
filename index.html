@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Dreamy Gradient Day Counter</title>
+    <title>Day Counter with Halo</title>
     <!-- 引入 Cinzel 細字重 -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap" rel="stylesheet">
     <style>
@@ -15,16 +15,29 @@
         font-family: 'Cinzel', serif;
       }
 
+      .halo {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(180,150,255,0.25) 30%, rgba(120,180,255,0.05) 70%, transparent 100%);
+        box-shadow: 0 0 40px rgba(160, 120, 255, 0.4), 
+                    0 0 80px rgba(120, 200, 255, 0.2);
+        animation: haloPulse 6s ease-in-out infinite alternate;
+      }
+
       #counter {
-        font-size: 70px;
+        font-size: 36px; /* 縮小字體 */
         font-weight: 400;
         text-align: center;
         background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradientShift 6s ease-in-out infinite;
-        text-shadow: 0 0 10px rgba(200, 200, 255, 0.6);
-        transition: all 0.3s ease;
+        text-shadow: 0 0 8px rgba(200, 200, 255, 0.4);
       }
 
       /* 淺色模式：深藍紫系 */
@@ -53,22 +66,31 @@
         }
       }
 
-      /* 漸層顏色流動 */
+      /* 漸層流動 */
       @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* 光暈脈動效果 */
+      @keyframes haloPulse {
         0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
+          box-shadow: 0 0 40px rgba(160, 120, 255, 0.4),
+                      0 0 80px rgba(120, 200, 255, 0.2);
         }
         100% {
-          background-position: 0% 50%;
+          box-shadow: 0 0 60px rgba(180, 140, 255, 0.6),
+                      0 0 120px rgba(140, 220, 255, 0.35);
         }
       }
     </style>
   </head>
   <body>
-    <div id="counter"></div>
+    <div class="halo">
+      <div id="counter"></div>
+    </div>
+
     <script>
       const start = new Date("2024-12-03T00:00:00"); // 修改成你的開始日期
 
