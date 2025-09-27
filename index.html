@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>Floating Dreamy Day Counter</title>
+  <!-- 引入 Cinzel 字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #0a0a0a, #1a1a2e);
+      font-family: 'Cinzel', serif;
+      overflow: hidden;
+    }
+
+    #counter {
+      font-size: 70px;
+      font-weight: 400;
+      color: #f0f0f0;
+      text-align: center;
+      text-shadow:
+        0 0 10px #ffb6c1,
+        0 0 20px #cda4ff,
+        0 0 30px #88f0ff,
+        0 0 40px #d4cfff,
+        0 0 50px #a6e0ff;
+      animation: dreamyGlow 3s ease-in-out infinite alternate, floatText 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes dreamyGlow {
+      0% {
+        text-shadow:
+          0 0 8px #ffb6c1,
+          0 0 18px #cda4ff,
+          0 0 28px #88f0ff,
+          0 0 38px #d4cfff,
+          0 0 48px #a6e0ff;
+      }
+      50% {
+        text-shadow:
+          0 0 14px #ffc0d3,
+          0 0 28px #d5b3ff,
+          0 0 42px #a0f0ff,
+          0 0 56px #e0d0ff,
+          0 0 70px #b0f0ff;
+      }
+      100% {
+        text-shadow:
+          0 0 10px #ffb6c1,
+          0 0 20px #cda4ff,
+          0 0 30px #88f0ff,
+          0 0 40px #d4cfff,
+          0 0 50px #a6e0ff;
+      }
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="counter"></div>
+
+  <script>
+    const start = new Date("2024-12-03T00:00:00"); // 修改成你的開始日期
+
+    function updateCounter() {
+      const now = new Date();
+      let diff = now - start;
+
+      // 包含開始日
+      diff += 1000 * 60 * 60 * 24;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("counter").innerText =
+        `${days} D : ${hours} H : ${minutes} M : ${seconds} S`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
