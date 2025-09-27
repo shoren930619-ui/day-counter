@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Day Counter with Halo</title>
+    <title>Dreamy Gradient Day Counter</title>
     <!-- 引入 Cinzel 細字重 -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap" rel="stylesheet">
     <style>
@@ -15,32 +15,18 @@
         font-family: 'Cinzel', serif;
       }
 
-      .halo {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(180,150,255,0.25) 30%, rgba(120,180,255,0.05) 70%, transparent 100%);
-        box-shadow: 0 0 40px rgba(160, 120, 255, 0.4), 
-                    0 0 80px rgba(120, 200, 255, 0.2);
-        animation: haloPulse 6s ease-in-out infinite alternate;
-      }
-
       #counter {
-        font-size: 36px; /* 縮小字體 */
+        font-size: 50px; /* 縮小字體 */
         font-weight: 400;
         text-align: center;
         background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradientShift 6s ease-in-out infinite;
-        text-shadow: 0 0 8px rgba(200, 200, 255, 0.4);
+        transition: all 0.3s ease;
       }
 
-      /* 淺色模式：深藍紫系 */
+      /* 淺色模式：深藍紫系 + 更明顯光暈 */
       @media (prefers-color-scheme: light) {
         #counter {
           background-image: linear-gradient(
@@ -50,10 +36,15 @@
             #283593,
             #512da8
           );
+          text-shadow:
+            0 0 6px #6a1b9a,
+            0 0 12px #512da8,
+            0 0 24px #283593,
+            0 0 40px rgba(100, 80, 200, 0.8);
         }
       }
 
-      /* 深色模式：銀白淡藍系 */
+      /* 深色模式：銀白淡藍系（柔和光暈） */
       @media (prefers-color-scheme: dark) {
         #counter {
           background-image: linear-gradient(
@@ -63,34 +54,29 @@
             #a6baff,
             #e0e6ff
           );
+          text-shadow:
+            0 0 8px #cfd9ff,
+            0 0 16px #a6baff,
+            0 0 28px #e0e6ff;
         }
       }
 
-      /* 漸層流動 */
+      /* 漸層顏色流動 */
       @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-
-      /* 光暈脈動效果 */
-      @keyframes haloPulse {
         0% {
-          box-shadow: 0 0 40px rgba(160, 120, 255, 0.4),
-                      0 0 80px rgba(120, 200, 255, 0.2);
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
         }
         100% {
-          box-shadow: 0 0 60px rgba(180, 140, 255, 0.6),
-                      0 0 120px rgba(140, 220, 255, 0.35);
+          background-position: 0% 50%;
         }
       }
     </style>
   </head>
   <body>
-    <div class="halo">
-      <div id="counter"></div>
-    </div>
-
+    <div id="counter"></div>
     <script>
       const start = new Date("2024-12-03T00:00:00"); // 修改成你的開始日期
 
