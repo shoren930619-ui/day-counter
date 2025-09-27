@@ -16,17 +16,18 @@
       }
 
       #counter {
-        font-size: 50px; /* 縮小字體 */
+        font-size: 70px;
         font-weight: 400;
         text-align: center;
         background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradientShift 6s ease-in-out infinite;
+        text-shadow: 0 0 10px rgba(200, 200, 255, 0.6);
         transition: all 0.3s ease;
       }
 
-      /* 淺色模式：深藍紫系 + 更明顯光暈 */
+      /* 淺色模式：深藍紫系 */
       @media (prefers-color-scheme: light) {
         #counter {
           background-image: linear-gradient(
@@ -36,15 +37,10 @@
             #283593,
             #512da8
           );
-          text-shadow:
-            0 0 6px #6a1b9a,
-            0 0 12px #512da8,
-            0 0 24px #283593,
-            0 0 40px rgba(100, 80, 200, 0.8);
         }
       }
 
-      /* 深色模式：銀白淡藍系（柔和光暈） */
+      /* 深色模式：銀白淡藍系 */
       @media (prefers-color-scheme: dark) {
         #counter {
           background-image: linear-gradient(
@@ -54,10 +50,6 @@
             #a6baff,
             #e0e6ff
           );
-          text-shadow:
-            0 0 8px #cfd9ff,
-            0 0 16px #a6baff,
-            0 0 28px #e0e6ff;
         }
       }
 
