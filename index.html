@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Stable Day Counter</title>
+    <title>Compact Day Counter</title>
     <!-- 等寬字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
@@ -16,16 +16,16 @@
       }
 
       #counter {
-        font-size: 50px;
+        font-size: 35px; /* 再小一點 */
         font-weight: 400;
         text-align: center;
         transition: all 0.3s ease;
       }
 
-      /* 淺色模式：深灰 */
+      /* 淺色模式：較淺的灰色 */
       @media (prefers-color-scheme: light) {
         #counter {
-          color: #333333;
+          color: #555555;
         }
       }
 
@@ -55,11 +55,10 @@
         const seconds = Math.floor((diff / 1000) % 60);
 
         // 固定寬度顯示，避免抖動
-        const pad2 = n => n.toString().padStart(2, '0');
-        const pad4 = n => n.toString().padStart(4, '0'); // 天數四位數
+        const pad = n => n.toString().padStart(2, '0');
 
         document.getElementById("counter").innerText =
-          `${pad4(days)} D : ${pad2(hours)} H : ${pad2(minutes)} M : ${pad2(seconds)} S`;
+          `${days.toString().padStart(3,'0')} D : ${pad(hours)} H : ${pad(minutes)} M : ${pad(seconds)} S`;
       }
 
       setInterval(updateCounter, 1000);
