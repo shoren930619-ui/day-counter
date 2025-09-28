@@ -1,9 +1,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Dreamy Gradient Day Counter</title>
-    <!-- 引入 Cinzel 細字重 -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&display=swap" rel="stylesheet">
+    <title>Stable Gradient Day Counter</title>
+    <!-- 引入等寬優雅字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
       body {
         display: flex;
@@ -11,19 +11,19 @@
         align-items: center;
         height: 100vh;
         margin: 0;
-        background: transparent; /* 背景透明 */
-        font-family: 'Cinzel', serif;
+        background: transparent;
+        font-family: 'Roboto Mono', monospace; /* 等寬字體 */
       }
 
       #counter {
-        font-size: 35px;
+        font-size: 50px; /* 縮小字體 */
         font-weight: 400;
         text-align: center;
         background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradientShift 6s ease-in-out infinite;
-        text-shadow: 0 0 10px rgba(200, 200, 255, 0.6);
+        text-shadow: 0 0 8px rgba(200, 200, 255, 0.6);
         transition: all 0.3s ease;
       }
 
@@ -55,15 +55,9 @@
 
       /* 漸層顏色流動 */
       @keyframes gradientShift {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
       }
     </style>
   </head>
@@ -84,8 +78,11 @@
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
 
+        // 固定寬度顯示：在數字前補零或空格
+        const pad = n => n.toString().padStart(2, '0');
+
         document.getElementById("counter").innerText =
-          `${days} D : ${hours} H : ${minutes} M : ${seconds} S`;
+          `${days.toString().padStart(3,'0')} D : ${pad(hours)} H : ${pad(minutes)} M : ${pad(seconds)} S`;
       }
 
       setInterval(updateCounter, 1000);
@@ -93,3 +90,4 @@
     </script>
   </body>
 </html>
+
