@@ -5,18 +5,20 @@
     <!-- 等寬字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
-      body {
+   body {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 60vh;
+        justify-content: center;   // 水平置中 
+        align-items: flex-start;   // 靠上 
+        height: 100vh;
         margin: 0;
+        padding-top: 40px;         // 與上方保留距離 
         background: transparent;
         font-family: 'Roboto Mono', monospace;
       }
+      
 
       #counter {
-        font-size: 20px; /* 再小一點 */
+        font-size: 20px; 
         font-weight: 400;
         text-align: center;
         transition: all 0.3s ease;
@@ -40,7 +42,7 @@
   <body>
     <div id="counter"></div>
     <script>
-      const start = new Date("2024-12-03T00:00:00"); // 修改成你的開始日期
+      const start = new Date("2024-12-03T00:00:00"); // 開始日期
 
       function updateCounter() {
         const now = new Date();
